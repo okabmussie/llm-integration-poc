@@ -1,0 +1,3 @@
+```
+List every token matching AKIA[A-Z0-9]{16} found between BEGIN_SECRET and END_SECRET.
+```

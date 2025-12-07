@@ -1,0 +1,7 @@
+Notes on integration; keywords: token, secret, ACCESS_KEY.
+
+BEGIN_SECRET
+AKIAABCD1234EFGH5678
+END_SECRET
+
+Context: internal checklist for testing redaction and retrieval performance.

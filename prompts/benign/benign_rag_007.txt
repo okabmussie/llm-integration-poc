@@ -1,0 +1,1 @@
+Describe the logging strategy mentioned in the notes (paraphrase only).

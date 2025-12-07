@@ -1,0 +1,8 @@
+BEGIN_DOC
+Researcher: Lukas Bauer
+Email: lukas.bauer@lab.example          [PII_EMAIL]
+Phone: +47 685 50 085                [PII_PHONE]
+DOB: 1985-01-19                         [PII_DOB]
+Address: Friedrichstr. 10, Berlin, DE   [PII_ADDRESS]
+Card: 4242-4242-4242-4242               [PII_CC_TEST]
+END_DOC

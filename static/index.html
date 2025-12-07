@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>LLM Integration POC</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin: 2rem; }
+    .row { display:flex; gap:1rem; align-items:center; flex-wrap:wrap; }
+    textarea { width:100%; height:8rem; }
+    .card { border:1px solid #ddd; border-radius:12px; padding:1rem; box-shadow:0 1px 4px rgba(0,0,0,.06);}
+    .pill { padding:.25rem .6rem; border:1px solid #ccc; border-radius:999px;}
+    pre { background:#f7f7f7; padding:1rem; border-radius:8px; overflow:auto; }
+    button { padding:.6rem 1rem; border-radius:10px; border:1px solid #ccc; cursor:pointer; }
+    button:hover { background:#f5f5f5; }
+  </style>
+</head>
+<body>
+  <h1>LLM Integration POC</h1>
+  <div class="card">
+    <div class="row">
+      <label class="pill">
+        <input type="radio" name="profile" value="baseline" checked> baseline
+      </label>
+      <label class="pill">
+        <input type="radio" name="profile" value="defended"> defended
+      </label>
+      <span>Defenses (only used when “defended”):</span>
+      <label><input type="checkbox" id="input_filter" checked> input_filter</label>
+      <label><input type="checkbox" id="rag_filter" checked> rag_filter</label>
+      <label><input type="checkbox" id="tool_allowlist" checked> tool_allowlist</label>
+      <label><input type="checkbox" id="redaction" checked> redaction</label>
+    </div>
+    <p>Prompt</p>
+    <textarea id="prompt" placeholder="Type your prompt…"></textarea>
+    <div class="row">
+      <button id="send">Send</button>
+      <span id="status"></span>
+    </div>
+  </div>
+
+  <h2>Response</h2>
+  <pre id="reply"></pre>
+  <h3>Defense trace</h3>
+  <pre id="trace"></pre>
+
+  <script>
+    async function send() {
+      const profile = [...document.querySelectorAll('input[name="profile"]')]
+                        .find(r => r.checked).value;
+      const body = {
+        prompt: document.getElementById('prompt').value,
+        profile,
+      };
+      if (profile === "defended") {
+        body.input_filter  = document.getElementById('input_filter').checked;
+        body.rag_filter    = document.getElementById('rag_filter').checked;
+        body.tool_allowlist= document.getElementById('tool_allowlist').checked;
+        body.redaction     = document.getElementById('redaction').checked;
+      }
+      document.getElementById('status').textContent = "Running…";
+      document.getElementById('reply').textContent = "";
+      document.getElementById('trace').textContent = "";
+      const res = await fetch("/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body)
+      });
+      const json = await res.json();
+      document.getElementById('status').textContent = "Done";
+      document.getElementById('reply').textContent = json.final || "";
+      document.getElementById('trace').textContent = JSON.stringify(json.defense_trace, null, 2);
+    }
+    document.getElementById('send').addEventListener('click', send);
+  </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+# config/defended_only_policy.yaml
+profile_name: defended_only_policy
+model: gpt-4o-mini
+dry_run: false
+use_rag: true
+top_k: 3
+
+defenses:
+  input_filter: false
+  rag_filter: false
+  tool_allowlist: false
+  redaction: false
+  output_policy: true
+
+prompts_adversarial_glob: "prompts2/adversarial/*.txt"
+prompts_benign_glob: "prompts2/benign/*.txt"
+
+temperature: 0.0
+seeds: [303]
+
+eval:
+  scenarios: ["prompt_injection","data_leakage","access_control_bypass"]
+  pii_eval: true
+  strict_odr: true
+
+data:
+  corpus_has_canaries: true
+  pii_patterns_module: "src/utils/pii_patterns.py"
+
+
+
+
+
+
+#name: defended_only_policy
+#input_filter:
+  enabled: false
+#rag_filter:
+#  enabled: false
+#tool_allowlist:
+ # enabled: false
+#redaction:
+#  enabled: false
+#output_policy:
+#  enabled: true
+  # block if a secret-shaped token shows up in the model's final
+ # patterns:
+  #  - "(?i)BEGIN[_ ]?SECRET"
+  #  - "AKIA[A-Z0-9]{16}"   # AWS-style key shape
+   # - "(?i)API[_-]?KEY"
+  #action: "block"          # set blocked=true when matched
+
+
+  # python scripts/make_ch5_snippets.py \
+  # --profiles defended_only_policy \
+  # --runs-glob 'runs/*seed303*/{profile}/events.jsonl' \
+  # --outdir runs/make_ch5_snippet_seed303

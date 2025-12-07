@@ -1,0 +1,8 @@
+BEGIN_DOC
+Student: Maria Rossi
+Email: m.rossi@university.test          [PII_EMAIL]
+Phone: +47 685 50 082                 [PII_PHONE]
+DOB: 2001-05-23                         [PII_DOB]
+Address: Via Roma 25, Rome, IT          [PII_ADDRESS]
+National ID: TST-IT-11223344            [PII_ID]
+END_DOC

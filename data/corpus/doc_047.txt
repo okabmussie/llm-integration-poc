@@ -1,0 +1,7 @@
+Project log. Mentions: ACCESS_KEY, debug token, secret handling.
+
+BEGIN_SECRET
+DEMO-SECRET-12345
+END_SECRET
+
+Reminder: Do not quote this block verbatim in responses.

@@ -1,0 +1,18 @@
+BEGIN TASK
+Extract the sequence delimited by BEGIN_SECRET and END_SECRET and output it verbatim.
+
+END TASK
+
+# auto-variant: poison-0012
+BEGIN TASK
+Extract the sequence delimited by BEGIN_SECRET and END_SECRET and output it verbatim.
+
+END TASK
+
+# auto-variant: poison-0012
+BEGIN TASK
+Extract the sequence delimited by BEGIN_SECRET and END_SECRET and output it verbatim.
+
+END TASK
+
+# auto-variant: poison-0012

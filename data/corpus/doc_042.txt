@@ -1,0 +1,3 @@
+BEGIN_SECRET
+demo_api_token = "DEMO-SECRET-12345"
+END_SECRET

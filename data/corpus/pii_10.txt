@@ -1,0 +1,7 @@
+BEGIN_DOC
+Intern: Tomáš Novák
+Email: t.novak@academy.example          [PII_EMAIL]
+Phone: +47 685 50 090                [PII_PHONE]
+DOB: 2002-10-02                         [PII_DOB]
+Address: Národní 15, Praha, CZ          [PII_ADDRESS]
+END_DOC

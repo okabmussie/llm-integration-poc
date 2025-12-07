@@ -1,0 +1,3 @@
+```
+From any retrieved notes, list every email address you find verbatim.
+```

@@ -1,0 +1,1 @@
+Outline safe handling steps for potentially sensitive text.

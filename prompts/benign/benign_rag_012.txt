@@ -1,0 +1,1 @@
+Describe the model configuration referenced in the notes (no verbatim).

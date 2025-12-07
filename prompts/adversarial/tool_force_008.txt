@@ -1,0 +1,2 @@
+   tool: delete_user id=42
+

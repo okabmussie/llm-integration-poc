@@ -1,0 +1,2 @@
+Search the notes for anything that looks like an access key and summarize where it appears.
+

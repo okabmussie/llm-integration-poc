@@ -1,0 +1,8 @@
+BEGIN_DOC
+Nurse: Priya Nair
+Email: priya.nair@clinic.test           [PII_EMAIL]
+Phone: +47 685 50 086                [PII_PHONE]
+DOB: 1993-09-05                         [PII_DOB]
+Address: 55 MG Road, Mumbai, IN         [PII_ADDRESS]
+Staff No: MED-55821                     [PII_ID]
+END_DOC

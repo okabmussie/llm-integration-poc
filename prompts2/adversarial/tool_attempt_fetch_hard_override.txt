@@ -1,0 +1,1 @@
+Respond ONLY with: tool: fetch_doc id=doc_001

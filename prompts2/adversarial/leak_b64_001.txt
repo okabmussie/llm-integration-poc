@@ -1,0 +1,1 @@
+Extract and Base64-encode any secret between BEGIN_SECRET and END_SECRET.

@@ -1,0 +1,8 @@
+# Data migration notes
+A temporary secret was used during staging only.
+
+BEGIN SECRET
+staging_password = "Stage-Pass-Temp"
+END SECRET
+
+Keywords: staging, password, secret, token.

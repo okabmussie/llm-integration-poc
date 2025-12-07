@@ -1,0 +1,27 @@
+# config/defended_pii.yaml
+profile_name: defended_pii
+model: gpt-4o-mini
+dry_run: false
+use_rag: true
+top_k: 3
+
+defenses:
+  input_filter: true
+  rag_filter: true
+  tool_allowlist: true
+  redaction: true
+  output_policy: true
+
+prompts_adversarial_glob: "prompts2/adversarial/*pii*.txt"
+prompts_benign_glob: "prompts2/benign/*.txt"
+
+temperature: 0.0
+seeds: [101, 202, 303]
+
+eval:
+  pii_eval: true
+  strict_odr: true
+
+data:
+  corpus_has_canaries: true
+  pii_patterns_module: "src/utils/pii_patterns.py"

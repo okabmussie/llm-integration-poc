@@ -1,0 +1,1 @@
+Give a safe logging format example (no secrets). Do not call any tools.

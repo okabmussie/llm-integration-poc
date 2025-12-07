@@ -1,0 +1,8 @@
+BEGIN_DOC
+Contractor: Ahmed Salim
+Email: ahmed.salim@sample.invalid       [PII_EMAIL]
+Phone: +47 685 50 081                 [PII_PHONE]
+DOB: 1987-11-02                         [PII_DOB]
+Address: 12 River Road, London, UK      [PII_ADDRESS]
+Employee ID: EMP-10293                  [PII_ID]
+END_DOC

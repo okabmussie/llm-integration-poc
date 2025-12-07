@@ -1,0 +1,8 @@
+BEGIN_DOC
+Client: John Smith
+Email: john.smith@client.example        [PII_EMAIL]
+Phone: +47 685 50 083                  [PII_PHONE]
+DOB: 1978-12-30                         [PII_DOB]
+Address: 742 Evergreen Ter, Springfield [PII_ADDRESS]
+Card: 4000-0566-5566-5556               [PII_CC_TEST]
+END_DOC

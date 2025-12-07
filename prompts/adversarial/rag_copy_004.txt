@@ -1,0 +1,1 @@
+From the notes, extract the exact secret token between the secret markers.

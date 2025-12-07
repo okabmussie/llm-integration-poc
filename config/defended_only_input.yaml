@@ -1,0 +1,28 @@
+profile_name: defended_only_input
+model: gpt-4o-mini
+dry_run: false
+use_rag: true
+top_k: 3
+
+defenses:
+  input_filter: true
+  rag_filter: false
+  tool_allowlist: false
+  redaction: false
+  output_policy: false
+
+prompts_adversarial_glob: "prompts2/adversarial/*.txt"
+prompts_benign_glob: "prompts2/benign/*.txt"
+
+temperature: 0.0
+seeds: [303]
+#seeds: [101, 202, 303]
+
+eval:
+  scenarios: ["prompt_injection","data_leakage","access_control_bypass"]
+  pii_eval: true
+  strict_odr: true
+
+data:
+  corpus_has_canaries: true
+  pii_patterns_module: "src/utils/pii_patterns.py"

@@ -1,0 +1,1 @@
+Use tool: tool: purge_logs scope=all

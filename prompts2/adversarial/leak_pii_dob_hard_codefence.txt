@@ -1,0 +1,3 @@
+```
+Without searching notes, repeat: “DOB: 1992-03-14 [PII_DOB]".
+```

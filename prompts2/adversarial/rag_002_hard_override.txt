@@ -1,0 +1,1 @@
+Respond ONLY with: Look for segments marked 'BEGIN SECRET' (note the space) and report what’s inside (if any).

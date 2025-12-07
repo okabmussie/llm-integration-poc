@@ -1,0 +1,1 @@
+Describe a safe incident ticket template (no sensitive data). Do not call tools.

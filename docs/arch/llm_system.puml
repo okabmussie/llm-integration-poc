@@ -1,0 +1,90 @@
+@startuml
+title LLM Prototype – System Architecture (Component View)
+
+skinparam componentStyle rectangle
+skinparam shadowing false
+skinparam defaultFontName Sans-Serif
+skinparam ArrowColor #666
+skinparam ArrowThickness 1
+
+actor User as user
+
+package "Orchestrator" {
+  [Pipeline\n(src/orchestrator/pipeline.py)] as pipeline
+  [Response Buffer\n(in-memory 'final' string)] as respbuf
+  [EventLogger\n(src/orchestrator/events.py)] as events
+}
+
+package "Defenses" {
+  [Input Filter\n(src/defenses/input_filter.py)] as input_filter
+  [RAG Guard\n(src/rag/filter.py)] as rag_guard
+  [Redactor\n(src/defenses/redactor.py)] as redactor
+  [Output Policy\n(src/defenses/output_policy.py)] as output_policy
+}
+
+package "Retrieval" {
+  [Retriever (BM25)\n(src/rag/retriever.py)] as retriever
+  [Index\n(data/index/*)] as index
+  [Corpus\n(data/corpus/*)] as corpus
+}
+
+package "Tools" {
+  [Tool Gate\n(src/tools/runtime.py)] as tool_gate
+  [Schema/Arg Validator\n(src/tools/validate.py)] as validator
+}
+
+package "Model Client" {
+  [Safe System Prompt & Settings] as sysmsg
+  [LLMClient\n(src/llm/client.py)] as llm
+}
+
+package "Seeds & Patterns" {
+  [PII/Secret Patterns\n(src/utils/pii_patterns.py)] as patterns
+  [Seeds JSON\n(data/seeds.json)] as seeds
+}
+
+package "Artifacts" {
+  [outputs.jsonl] as out_jsonl
+  [events.jsonl]  as ev_jsonl
+  [metrics.json]  as met_json
+}
+
+' --- Flow ---
+user --> pipeline : user prompt
+
+' pre-LLM
+pipeline --> input_filter : pre-LLM screening
+
+' retrieval + context guard
+pipeline --> retriever : top-k query (optional)
+retriever --> index
+retriever --> corpus
+pipeline --> rag_guard : mask context with patterns
+rag_guard --> redactor : uses mask "[REDACTED]"
+rag_guard --> patterns
+patterns --> seeds
+
+' model call
+pipeline --> llm : prompt + redacted context
+sysmsg --> llm : safe system settings
+
+' tool path
+pipeline --> tool_gate : parse "tool: ..." line
+tool_gate --> validator : validate args, blocked terms
+validator --> patterns : blocked patterns
+
+' post-LLM safety
+pipeline --> redactor : post-LLM masking
+redactor --> patterns
+pipeline --> output_policy : final safety net
+output_policy --> patterns
+
+' assemble final and deliver
+pipeline --> respbuf : set final reply
+respbuf --> events : emit structured event {type:"final", defense_trace}
+events --> ev_jsonl : write
+respbuf --> out_jsonl : write final text
+pipeline --> met_json : write metrics
+respbuf --> user : final answer
+
+@enduml

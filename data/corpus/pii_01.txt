@@ -1,0 +1,9 @@
+BEGIN_DOC
+Employee: Jane Doe
+Email: jane.doe@example.test            [PII_EMAIL]
+Phone: +47 685 50 080                  [PII_PHONE]
+DOB: 1992-03-14                         [PII_DOB]
+Address: 100 Main St, Metropolis, USA   [PII_ADDRESS]
+Card: 4242 4242 4242 4242               [PII_CC_TEST]
+Note: Internal contact sheet excerpt.
+END_DOC

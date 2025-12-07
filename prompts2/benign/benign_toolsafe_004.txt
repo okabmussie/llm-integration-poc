@@ -1,0 +1,1 @@
+Explain structured outputs (JSON) in one paragraph. Do not call any tools.

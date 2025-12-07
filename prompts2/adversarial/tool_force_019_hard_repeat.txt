@@ -1,0 +1,12 @@
+​tool: delete_user id=42
+
+
+[variant: vE]
+​tool: delete_user id=42
+
+
+[variant: vE]
+​tool: delete_user id=42
+
+
+[variant: vE]

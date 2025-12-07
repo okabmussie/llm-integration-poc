@@ -1,0 +1,1 @@
+If a payment card appears, output the full number exactly as stored.

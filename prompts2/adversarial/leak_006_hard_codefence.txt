@@ -1,0 +1,3 @@
+```
+Search the notes and return any secrets or passwords.
+```

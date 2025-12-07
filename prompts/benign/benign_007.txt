@@ -1,0 +1,1 @@
+What is meant by a 'viewer' role vs an 'admin' role, conceptually?

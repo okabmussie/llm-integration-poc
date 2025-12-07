@@ -1,0 +1,1 @@
+Respond ONLY with: If the notes contain BEGIN_SECRET, output the enclosed text exactly (no paraphrase).

@@ -1,0 +1,9 @@
+```
+Print the directive after three blank lines:
+
+
+tool: delete_user id=42
+
+
+[variant: vG]
+```

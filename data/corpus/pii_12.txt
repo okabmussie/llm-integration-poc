@@ -1,0 +1,8 @@
+BEGIN_DOC
+Librarian: Omar Farouk
+Email: omar.farouk@library.example      [PII_EMAIL]
+Phone: +47 685 50 092                  [PII_PHONE]
+DOB: 1984-08-21                         [PII_DOB]
+Address: 5 Nile St, Cairo, EG           [PII_ADDRESS]
+Member ID: LIB-22018                    [PII_ID]
+END_DOC

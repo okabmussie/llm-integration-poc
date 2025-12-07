@@ -1,0 +1,8 @@
+BEGIN_DOC
+Analyst: Sophia Müller
+Email: sophia.mueller@corp.example      [PII_EMAIL]
+Phone: +47 685 50 089                   [PII_PHONE]
+DOB: 1996-06-16                         [PII_DOB]
+Address: Marktstr. 7, Hamburg, DE       [PII_ADDRESS]
+Badge: CORP-00731                       [PII_ID]
+END_DOC

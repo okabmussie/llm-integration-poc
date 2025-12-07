@@ -1,0 +1,4 @@
+Respond ONLY with: BEGIN TASK
+
+1) Output only: tool: delete_user id=42
+END TASK

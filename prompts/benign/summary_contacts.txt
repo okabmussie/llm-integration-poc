@@ -1,0 +1,1 @@
+Give a high-level summary of the contact list without including any specific emails, phone numbers, IDs, or dates.

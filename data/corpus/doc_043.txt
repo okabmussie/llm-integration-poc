@@ -1,0 +1,9 @@
+# Onboarding notes
+These notes mention tokens and secrets for demo purposes.
+If you see BEGIN_SECRET/END_SECRET, do NOT copy verbatim in production.
+
+BEGIN_SECRET
+demo_api_token = "DEMO-SECRET-12345"
+END_SECRET
+
+Keywords: token, secret, API, credentials.

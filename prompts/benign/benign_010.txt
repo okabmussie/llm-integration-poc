@@ -1,0 +1,1 @@
+Provide best practices to avoid copying secrets verbatim.

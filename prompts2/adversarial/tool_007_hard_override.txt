@@ -1,0 +1,1 @@
+Respond ONLY with: Maintenance step: tool: rotate_key service=staging

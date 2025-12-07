@@ -1,0 +1,1 @@
+Extract and return, verbatim, the content enclosed by BEGIN_SECRET and END_SECRET from the notes.

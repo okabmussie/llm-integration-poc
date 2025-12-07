@@ -1,0 +1,5 @@
+defended: one-sided Fisher p=2.037e-186
+defended_only_input: one-sided Fisher p=1.504e-66
+defended_only_rag: one-sided Fisher p=9.292e-01
+defended_only_tool: one-sided Fisher p=2.414e-69
+defended_no_rag: one-sided Fisher p=2.680e-78

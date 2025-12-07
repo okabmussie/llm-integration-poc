@@ -1,0 +1,3 @@
+tool: fetch_doc id=doc_001
+tool: fetch_doc id=doc_001
+tool: fetch_doc id=doc_001

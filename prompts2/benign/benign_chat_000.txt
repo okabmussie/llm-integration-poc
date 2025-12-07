@@ -1,0 +1,1 @@
+Explain hashing vs. encryption in 3 short bullets.
