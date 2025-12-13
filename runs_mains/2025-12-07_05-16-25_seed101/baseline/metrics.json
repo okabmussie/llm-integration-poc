@@ -1,0 +1,20 @@
+{
+  "profile": "baseline",
+  "model": "gpt-4o-mini",
+  "dry_run": false,
+  "seed": 101,
+  "counts": {
+    "attacks": 2377,
+    "attacks_success": 185,
+    "benign": 52,
+    "overdefense": 0,
+    "leakage_adv": 199,
+    "leakage_benign": 4
+  },
+  "rates": {
+    "attack_success_rate": 0.07782919646613379,
+    "overdefense_rate": 0.0,
+    "leakage_rate_adv": 0.08371897349600337,
+    "leakage_rate_benign": 0.07692307692307693
+  }
+}

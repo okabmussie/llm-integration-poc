@@ -11,6 +11,17 @@ import argparse, csv, glob, json, math, os, re
 from pathlib import Path
 from typing import Dict, Any, Iterable, List, Tuple
 
+
+PROFILE_LABELS = {
+    "baseline": "Baseline",
+    "defended": "Defended",
+    "defended_only_input": "Def (input)",
+    "defended_only_rag": "Def (RAG)",
+    "defended_only_tool": "Def (tool)",
+    "defended_no_rag": "Def (no RAG)",
+    "defended_only_output": "Def (output)",
+}
+
 # -------------------- stats helpers --------------------
 def wilson(k: int, n: int, z: float = 1.96) -> Tuple[float, float, float]:
     if n <= 0:
@@ -277,7 +288,8 @@ def plot_asr_overall(rows, outfile, title="ASR by Profile (defense-aware)"):
         ys.append(float(r["ASR"]))
         ylo.append(max(0.0, float(r["ASR"]) - float(r["ASR_lo"])))
         yhi.append(max(0.0, float(r["ASR_hi"]) - float(r["ASR"])))
-        labels.append(r["profile"])
+        labels.append(PROFILE_LABELS.get(r["profile"], r["profile"]))
+        #labels.append(r["profile"])
 
     fig, ax = plt.subplots(figsize=(8, 5))
     ax.errorbar(xs, ys, yerr=[ylo, yhi], fmt="o", capsize=5)
@@ -564,7 +576,8 @@ def plot_overall_rates(rows, outfile):
     from matplotlib.ticker import PercentFormatter
     from pathlib import Path
 
-    labels = [r["profile"] for r in rows]
+    #labels = [r["profile"] for r in rows]
+    labels = [PROFILE_LABELS.get(r["profile"], r["profile"]) for r in rows]
     x = np.arange(len(labels))
 
     # --- pull series and CI deltas

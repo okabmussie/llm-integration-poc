@@ -1,13 +1,25 @@
+
 import json, math
 import matplotlib.pyplot as plt
 
+PROFILE_LABELS = {
+    "baseline": "Baseline",
+    "defended": "Defended",
+    "defended_only_input": "Def (input)",
+    "defended_only_rag": "Def (RAG)",
+    "defended_only_tool": "Def (tool)",
+    "defended_no_rag": "Def (no RAG)",
+    "defended_only_output": "Def (output)",
+}
+
 profiles = [
-    ("baseline",       "runs_main/2025-11-08_20-57-03_seed303/baseline/events.jsonl"),
-    ("def_no_rag",     "runs_main/2025-11-09_19-55-35_seed303/defended_no_rag/events.jsonl"),
-    ("def_only_input", "runs_main/2025-11-09_13-17-10_seed303/defended_only_input/events.jsonl"),
-    ("def_only_rag",   "runs_main/2025-11-09_17-29-10_seed303/defended_only_rag/events.jsonl"),
-    ("def_only_tool",  "runs_main/2025-11-09_17-55-18_seed303/defended_only_tool/events.jsonl"),
-    ("def",            "runs_main/2025-11-08_22-12-37_seed303/defended/events.jsonl"),
+    ("baseline",            "runs/2025-11-08_20-57-03_seed303/baseline/events.jsonl"),
+    ("defended_no_rag",     "runs/2025-11-09_19-55-35_seed303/defended_no_rag/events.jsonl"),
+    ("defended_only_input", "runs/2025-11-09_13-17-10_seed303/defended_only_input/events.jsonl"),
+    ("defended_only_rag",   "runs/2025-11-09_17-29-10_seed303/defended_only_rag/events.jsonl"),
+    ("defended_only_tool",  "runs/2025-11-09_17-55-18_seed303/defended_only_tool/events.jsonl"),
+    ("defended_only_output","runs/2025-12-07_19-13-00_seed303/defended_only_output/events.jsonl"),
+    ("defended",            "runs/2025-11-08_22-12-37_seed303/defended/events.jsonl"),
 ]
 
 def wilson(p, n, z=1.96):
@@ -56,11 +68,9 @@ for name, path in profiles:
                         ):
                             S += 1
 
-                
                 if e.get("leakage"):
                     L += 1
 
-      
             elif t == "benign" and role == "viewer":
                 B += 1
                 dt = e.get("defense_trace") or {}
@@ -72,37 +82,37 @@ for name, path in profiles:
                 if blocked:
                     OD += 1
 
-    ASR = S / A if A else 0.0
+    ASR  = S / A if A else 0.0
     Leak = L / A if A else 0.0
-    ODR = OD / B if B else 0.0
+    ODR  = OD / B if B else 0.0
     lo, hi = wilson(ASR, A)
 
-    print(f"{name:15s}  A={A:4d}  S={S:4d}  ASR={ASR:.4f} "
+    print(f"{name:20s}  A={A:4d}  S={S:4d}  ASR={ASR:.4f} "
           f"CI=[{lo:.4f},{hi:.4f}]  Leak={Leak:.4f}  "
           f"B={B:3d}  OD={OD:3d}  ODR={ODR:.4f}")
 
     results.append((name, ASR, ODR, Leak))
 
-
-labels   = [r[0] for r in results]
-asr_vals = [r[1] for r in results]
-odr_vals = [r[2] for r in results]
-leak_vals= [r[3] for r in results]
+# Use pretty labels here
+labels    = [PROFILE_LABELS.get(r[0], r[0]) for r in results]
+asr_vals  = [r[1] for r in results]
+odr_vals  = [r[2] for r in results]
+leak_vals = [r[3] for r in results]
 
 x = range(len(labels))
 width = 0.25
 
 fig, ax = plt.subplots(figsize=(8, 4))
-ax.bar([i - width for i in x], asr_vals,  width, label="ASR")
-ax.bar(x,                    odr_vals,  width, label="ODR")
-ax.bar([i + width for i in x], leak_vals, width, label="Leakage rate")
+ax.bar([i - width for i in x], asr_vals,   width, label="ASR")
+ax.bar(x,                      odr_vals,   width, label="ODR")
+ax.bar([i + width for i in x], leak_vals,  width, label="Leakage rate")
 
 ax.set_xticks(list(x))
 ax.set_xticklabels(labels, rotation=40, ha="right", fontsize=9)
 ax.set_ylabel("Rate", fontsize=11)
 ax.set_xlabel("Profile", fontsize=11)
 ax.legend(fontsize=9)
-ax.set_title("Overall rates (seed 303)", fontsize=12)
+ax.set_title("Overall rates seed 303", fontsize=12)
 
 fig.tight_layout()
-plt.savefig("uiotheses/metrics_extras_overall_303_consistent.png", dpi=300)
+plt.savefig("uiotheses/metrics_extras_overall_303_figure.5.6.png", dpi=300)

@@ -1,0 +1,4 @@
+profile,input_filter_precision,input_filter_recall,redactor_precision,redactor_recall
+defended,0.003663,1.000000,1.000000,1.000000
+defended_no_rag,0.003663,1.000000,1.000000,1.000000
+defended_only_input,0.003663,0.106383,0.000000,0.000000

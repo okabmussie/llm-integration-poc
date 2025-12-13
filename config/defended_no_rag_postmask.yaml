@@ -1,16 +1,16 @@
 profile_name: defended_no_rag_postmask
 model: gpt-4o-mini
 top_k: 0
-dry_run: true           # deterministic & free for the demo
+dry_run: true       
 use_rag: false
 
 defenses:
-  input_filter: false   # let the echo through for this demo
-  rag_filter: false     # no RAG anyway
-  tool_allowlist: false # keep it out of the way
-  redaction: true       # <-- we want post-LLM masking
-  output_policy: false  # don’t re-block the redacted text
-  postmask_echo: true   # <-- REQUIRED demo flag
+  input_filter: false 
+  rag_filter: false    
+  tool_allowlist: false 
+  redaction: true      
+  output_policy: false  
+  postmask_echo: true  
 
 prompts_adversarial_glob: "prompts2/adversarial/*postmask*.txt"
 prompts_benign_glob: "prompts2/benign/*.txt"

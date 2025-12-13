@@ -6,14 +6,23 @@ import csv, glob, json, math, os, re
 from pathlib import Path
 
 # ---- configuration (profiles we’ll look for; add/remove as you like) ----
-PROFILES = [
-    "baseline",
-    "defended",
-    "defended_no_rag",
-    "defended_only_input",
-    "defended_only_rag",
-    "defended_only_tool",
-]
+#PROFILES = [
+ #   "baseline",
+ #   "defended",
+  #  "defended_no_rag",
+  #  "defended_only_input",
+ #   "defended_only_rag",
+  #  "defended_only_tool",
+#]
+PROFILES = {
+    "baseline":             "Baseline",
+    "defended":             "Defended",
+    "defended_only_input":  "Def (input)",
+    "defended_only_rag":    "Def (RAG)",
+    "defended_only_tool":   "Def (tool)",
+    "defended_no_rag":      "Def (no RAG)",
+    "defended_only_output": "Def (output)",
+}
 
 RUNS_GLOB = "runs/*/{profile}/events.jsonl"  # we select the most recent per profile
 OUTDIR = Path("runs")  # single place for all generated tables/figs

@@ -3,4 +3,5 @@ __pycache__/
 runs/
 data/index/
 .env
+.env.example
 .DS_Store
